@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 const assert = require('assert');
+const { S_IFDIR } = require('constants');
 const circle = require('../src/circle');
 
 /*
@@ -25,13 +26,40 @@ const circle = require('../src/circle');
 
 describe('4 - Implemente os casos de teste para a função `circle`', () => {
   it('Verifica se ao receber um raio, a função `circle` retorna um objeto contedos os valores esperados', () => {
-    assert.fail();
+    // assert.fail();
+
     // ESCREVA SEUS TESTES ABAIXO:
-    // Teste se circle retorna um objeto.
-    // Teste se o objeto retornado tem 3 entradas.
-    // Teste se a função, quando não recebe nenhum parâmetro, retorna undefined.
-    // Teste que a função retorna, dentro de um objeto, a circunferência correta para um círculo de raio 2.
+    // Teste se circle retorna um objeto. - OK
+    assert.strictEqual(typeof(circle(3)), 'object');
+
+    // Teste se o objeto retornado tem 3 entradas. - OK
+    const received = Object.keys(circle(3)).length;
+    assert.strictEqual(received, 3);
+
+    // Teste se a função, quando não recebe nenhum parâmetro, retorna undefined. - OK
+    assert.strictEqual(typeof(circle()), 'undefined');
+
+    // Teste que a função retorna, dentro de um objeto, a circunferência correta para um círculo de raio 2. - OK
+    const received2 = Object.values(circle(2));
+    assert.strictEqual(received2[2], 12.56);
+
     // Teste que a função retorna, dentro de um objeto, a área correta para um círculo de raio 3.
+    const received3 = Object.values(circle(3));
+    const rounded = parseFloat(received3[1].toPrecision(2));
+    assert.deepStrictEqual(rounded, 28);
+
     // Teste que a função retorna, num objeto, os dados corretos de um círculo de raio 3.
+    const received4 = Object.values(circle(3));
+    const area1 = received4[0];
+    const radius1 = parseFloat(received4[1].toPrecision(2));
+    const circumference1 = parseFloat(received4[2].toPrecision(2));
+
+    const objConverted = {
+      area: area1,
+      radius: radius1,
+      circumference: circumference1
+    }
+
+    assert.deepStrictEqual(objConverted, {area: 3, radius: 28, circumference: 19});
   });
 });
