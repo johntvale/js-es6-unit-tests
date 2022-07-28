@@ -1,4 +1,4 @@
-# Projeto Javascript Unit Tests
+# Projeto Javascript ES6 Unit Tests
   Esse projeto foi desenvolvido no curso da Trybe, no módulo de Fundamentos.
 
   Principais objetivos:
